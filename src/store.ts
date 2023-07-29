@@ -10,7 +10,7 @@ export type Note = {
     archived: boolean;
 };
 
-const todolistSlice = createSlice({
+const notesSlice = createSlice({
     name: 'notes',
     initialState: {
         notes: [
@@ -98,7 +98,7 @@ const todolistSlice = createSlice({
     }
 });
 
-export const { addNote, editNote, toggleArchiveNote, removeNote } = todolistSlice.actions;
+export const { addNote, editNote, toggleArchiveNote, removeNote } = notesSlice.actions;
 
 const selectSelf = (state: { notes: Note[] }) => state;
 
@@ -108,7 +108,7 @@ export const selectNotes = createSelector(
 );
 
 const store = configureStore({
-    reducer: todolistSlice.reducer
+    reducer: notesSlice.reducer
 });
 
 export default store;
