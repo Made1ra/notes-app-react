@@ -18,9 +18,9 @@ type ButtonProps = {
 };
 
 
-function Button({ children }: ButtonProps) {
+function Button({ children, onClick }: ButtonProps) {
     return (
-        <StyledButton>{children}</StyledButton>
+        <StyledButton onClick={onClick}>{children}</StyledButton>
     );
 }
 
