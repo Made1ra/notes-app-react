@@ -93,7 +93,7 @@ function Modal({ $isOpen, isEditing, selectedNote, onClose }: ModalProps) {
     return (
         <Overlay $isOpen={$isOpen}>
             <Content>
-                <h2>{isEditing ? 'Edit Note' : 'Create New Note'}</h2>
+                <h2>{isEditing ? 'Edit Note' : 'Add New Note'}</h2>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <label htmlFor="name">Name:</label>
                     <TextInput
