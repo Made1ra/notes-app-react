@@ -11,6 +11,7 @@ import {
 import { extractDatesFromNoteContent } from './utilities/extractDatesFromNoteContent';
 import { getNumberOfNotesByCategory } from './utilities/getNumberOfNotesByCategory';
 import Container from './components/Container';
+import TableContainer from './components/TableContainer';
 import Table from './components/Table';
 import Thead from './components/Thead';
 import Th from './components/Th';
@@ -63,66 +64,68 @@ function App() {
 
   return (
     <Container>
-      <Table>
-        <Thead>
-          <Tr>
-            <Th>Name</Th>
-            <Th>Created</Th>
-            <Th>Category</Th>
-            <Th>Content</Th>
-            <Th>Dates</Th>
-            <Th />
-            <Th>
-              <Button onClick={() => unarchiveAll()}>
-                Unarchive All
-              </Button>
-            </Th>
-            <Th>
-              <Button onClick={() => removeAll()}>
-                Remove All
-              </Button>
-            </Th>
-          </Tr>
-        </Thead>
-        <tbody>
-          {notes.map((note) => (
-            !note.archived && (
-              <Tr key={note.id}>
-                <Td>
-                  {note.name}
-                </Td>
-                <Td>
-                  {note.created}
-                </Td>
-                <Td>
-                  {note.category}
-                </Td>
-                <Td>
-                  {note.content}
-                </Td>
-                <Td>
-                  {extractDatesFromNoteContent(note.content).join(', ')}
-                </Td>
-                <Td>
-                  <Button onClick={() => handleEditNote(note)}>
-                    Edit
-                  </Button>
-                </Td>
-                <Td>
-                  <Button onClick={() => toggleNote(note.id, note.archived)}>
-                    Archive
-                  </Button>
-                </Td>
-                <Td>
-                  <Button onClick={() => remove(note.id)}>
-                    Remove
-                  </Button>
-                </Td>
-              </Tr>
-            )
-          ))}
-        </tbody>
-      </Table>
+      <TableContainer>
+        <Table>
+          <Thead>
+            <Tr>
+              <Th>Name</Th>
+              <Th>Created</Th>
+              <Th>Category</Th>
+              <Th>Content</Th>
+              <Th>Dates</Th>
+              <Th />
+              <Th>
+                <Button onClick={() => unarchiveAll()}>
+                  Unarchive All
+                </Button>
+              </Th>
+              <Th>
+                <Button onClick={() => removeAll()}>
+                  Remove All
+                </Button>
+              </Th>
+            </Tr>
+          </Thead>
+          <tbody>
+            {notes.map((note) => (
+              !note.archived && (
+                <Tr key={note.id}>
+                  <Td>
+                    {note.name}
+                  </Td>
+                  <Td>
+                    {note.created}
+                  </Td>
+                  <Td>
+                    {note.category}
+                  </Td>
+                  <Td>
+                    {note.content}
+                  </Td>
+                  <Td>
+                    {extractDatesFromNoteContent(note.content).join(', ')}
+                  </Td>
+                  <Td>
+                    <Button onClick={() => handleEditNote(note)}>
+                      Edit
+                    </Button>
+                  </Td>
+                  <Td>
+                    <Button onClick={() => toggleNote(note.id, note.archived)}>
+                      Archive
+                    </Button>
+                  </Td>
+                  <Td>
+                    <Button onClick={() => remove(note.id)}>
+                      Remove
+                    </Button>
+                  </Td>
+                </Tr>
+              )
+            ))}
+          </tbody>
+        </Table>
+      </TableContainer>
       <CreateButton onClick={() => handleAddNote()}>Create Note</CreateButton>
       <Table>
         <Thead>
