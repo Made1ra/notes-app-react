@@ -92,13 +92,21 @@ const notesSlice = createSlice({
                 archived: !action.payload.archived
             };
         },
+        unarchiveNotes: (state) => {
+            state.notes.forEach((note) => {
+                note.archived = false;
+            });
+        },
         removeNote: (state, action) => {
             state.notes = state.notes.filter((note) => note.id !== action.payload);
+        },
+        removeNotes: (state) => {
+            state.notes = [];
         }
     }
 });
 
-export const { addNote, editNote, toggleArchiveNote, removeNote } = notesSlice.actions;
+export const { addNote, editNote, toggleArchiveNote, unarchiveNotes, removeNote, removeNotes } = notesSlice.actions;
 
 const selectSelf = (state: { notes: Note[] }) => state;
 
