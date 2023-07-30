@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 const StyledTr = styled.tr`
+    width: fit-content;
+    
     td {
         background-color: rgba(176, 196, 222, 0.3);
     }
