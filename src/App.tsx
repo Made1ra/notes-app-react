@@ -74,7 +74,7 @@ function App() {
             <Th />
             <Th>
               <Button onClick={() => unarchiveAll()}>
-                Unarchive
+                Unarchive All
               </Button>
             </Th>
             <Th>
