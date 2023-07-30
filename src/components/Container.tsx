@@ -5,6 +5,8 @@ const StyledContainer = styled.div`
     align-items: center;
     justify-content: flex-end;
     flex-direction: column;
+    overflow-x: auto;
+    max-width: 100%;
 `;
 
 type ContainerProps = {
