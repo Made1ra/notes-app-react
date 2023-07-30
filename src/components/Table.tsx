@@ -2,14 +2,11 @@ import styled from 'styled-components';
 
 const StyledTable = styled.table`
     text-align: center;
-    width: fit-content;
     margin: 1em;
     border-collapse: collapse;
-    table-layout: fixed;
-    overflow-x: auto;
-    
-    @media screen and (max-width: 576px) {
-        width: 100vw;
+
+    @media screen and (max-width: 768px) {
+        width: max-content;
         margin: 0;
     }
 `;
