@@ -75,12 +75,18 @@ function App() {
               <Th>Dates</Th>
               <Th />
               <Th>
-                <Button onClick={() => unarchiveAll()}>
+                <Button
+                  onClick={() => unarchiveAll()}
+                  disabled={notes.filter((note) => note.archived).length === 0}
+                >
                   Unarchive All
                 </Button>
               </Th>
               <Th>
-                <Button onClick={() => removeAll()}>
+                <Button
+                  onClick={() => removeAll()}
+                  disabled={notes.length === 0}
+                >
                   Remove All
                 </Button>
               </Th>
