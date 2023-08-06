@@ -1,6 +1,7 @@
 type ButtonProps = {
     children?: React.ReactNode;
     onClick?: () => void;
+    disabled?: boolean;
 };
 
 function Button({ children, onClick }: ButtonProps) {
@@ -11,7 +12,7 @@ function Button({ children, onClick }: ButtonProps) {
         >
             {children}
         </button>
-    )
+    );
 }
 
 export default Button;
