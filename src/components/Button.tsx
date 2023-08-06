@@ -1,28 +1,17 @@
-import styled from 'styled-components';
-
-const StyledButton = styled.button`
-    cursor: pointer;
-    border: none;
-    padding: 0.5em;
-    background-color: #d3d3d3;
-    font-weight: bold;
-    width: fit-content;
-
-    &:hover {
-        opacity: 0.9;
-    }
-`;
-
 type ButtonProps = {
     children?: React.ReactNode;
     onClick?: () => void;
 };
 
-
 function Button({ children, onClick }: ButtonProps) {
     return (
-        <StyledButton onClick={onClick}>{children}</StyledButton>
-    );
+        <button
+            onClick={onClick}
+            className="btn py-2 px-4 bg-gray-300 inline-block rounded-lg"
+        >
+            {children}
+        </button>
+    )
 }
 
 export default Button;

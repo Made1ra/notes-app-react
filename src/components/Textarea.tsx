@@ -1,11 +1,4 @@
 import { ChangeEvent } from 'react';
-import styled from 'styled-components';
-
-const StyledTextarea = styled.textarea`
-    width: 100%;
-    padding: 1em 0;
-    margin: 0 0 1em;
-`;
 
 type TextareaProps = {
     id?: string;
@@ -16,7 +9,13 @@ type TextareaProps = {
 
 function Textarea({ id, required, value, onChange }: TextareaProps) {
     return (
-        <StyledTextarea id={id} value={value} onChange={onChange} required={required} />
+        <textarea
+            id={id}
+            value={value}
+            onChange={onChange}
+            required={required}
+            className="w-full py-4 px-2 my-4 border border-neutral-950 rounded shadow-xl"
+        />
     );
 }
 

@@ -1,11 +1,4 @@
 import { ChangeEvent } from 'react';
-import styled from 'styled-components';
-
-const StyledTextInput = styled.input`
-    width: 100%;
-    padding: 1em 0;
-    margin: 0 0 1em;
-`;
 
 type TextInputProps = {
     value: string;
@@ -15,7 +8,13 @@ type TextInputProps = {
 
 function TextInput({ value, required, onChange }: TextInputProps) {
     return (
-        <StyledTextInput value={value} onChange={onChange} required={required} />
+        <input
+            type="text"
+            value={value}
+            onChange={onChange}
+            required={required}
+            className="w-full py-4 px-2 my-4 border border-neutral-950 rounded shadow-xl"
+        />
     );
 }
 
