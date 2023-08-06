@@ -24,15 +24,15 @@ import Modal from './components/Modal';
 import Heading from './components/Heading';
 
 function App() {
+  const categories = ['Task', 'Random Thought', 'Idea'];
+
   const notes = useSelector(selectNotes);
   const dispatch = useDispatch();
 
+  const [showArchivedNotes, setShowArchivedNotes] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [selectedNote, setSelectedNote] = useState<Note | null>(null)
-  const [showArchivedNotes, setShowArchivedNotes] = useState(false);
-
-  const categories = ['Task', 'Random Thought', 'Idea'];
 
   const handleAddNote = () => {
     setIsEditing(false);
