@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid';
 import { formatDate } from '../utilities/formatDate';
 import Overlay from './Overlay';
 import Content from './Content';
+import Heading from './Heading';
 import TextInput from './TextInput';
 import Select from './Select';
 import Textarea from './Textarea';
@@ -20,6 +21,7 @@ type ModalProps = {
 
 function Modal({ isOpen, isEditing, selectedNote, onClose }: ModalProps) {
     const dispatch = useDispatch();
+    console.log(selectedNote);
 
     const [name, setName] = useState('');
     const [category, setCategory] = useState('Task');
@@ -72,7 +74,7 @@ function Modal({ isOpen, isEditing, selectedNote, onClose }: ModalProps) {
     return (
         <Overlay isOpen={isOpen}>
             <Content>
-                <h2 className="m-4 text-black font-bold">{isEditing ? 'Edit Note' : 'Add New Note'}</h2>
+                <Heading>{isEditing ? 'Edit Note' : 'Add New Note'}</Heading>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <label htmlFor="name">Name:</label>
                     <TextInput
