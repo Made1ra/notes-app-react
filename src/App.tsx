@@ -4,9 +4,10 @@ import {
   Note,
   selectNotes,
   toggleArchiveNote,
+  archiveNotes,
   unarchiveNotes,
   removeNote,
-  removeNotes
+  removeNotes,
 } from './store';
 import { extractDatesFromNoteContent } from './utilities/extractDatesFromNoteContent';
 import { getNumberOfNotesByCategory } from './utilities/getNumberOfNotesByCategory';
@@ -20,6 +21,7 @@ import Td from './components/Td';
 import Button from './components/Button';
 import CreateButton from './components/CreateButton';
 import Modal from './components/Modal';
+import Heading from './components/Heading';
 
 function App() {
   const notes = useSelector(selectNotes);
@@ -28,6 +30,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [selectedNote, setSelectedNote] = useState<Note | null>(null)
+  const [showArchivedNotes, setShowArchivedNotes] = useState(false);
 
   const categories = ['Task', 'Random Thought', 'Idea'];
 
@@ -49,6 +52,10 @@ function App() {
   const toggleNote = (id: string, archived: boolean) => {
     dispatch(toggleArchiveNote({ id, archived }));
   };
+
+  const archiveAll = () => {
+    dispatch(archiveNotes());
+  }
 
   const unarchiveAll = () => {
     dispatch(unarchiveNotes());
@@ -76,10 +83,10 @@ function App() {
               <Th />
               <Th>
                 <Button
-                  onClick={() => unarchiveAll()}
-                  disabled={notes.filter((note) => note.archived).length === 0}
+                  onClick={() => archiveAll()}
+                  disabled={notes.filter((note) => !note.archived).length === 0}
                 >
-                  Unarchive All
+                  Archive All
                 </Button>
               </Th>
               <Th>
@@ -157,6 +164,69 @@ function App() {
           ))}
         </tbody>
       </Table>
+      <div className="mt-8 mb-4">
+        {!showArchivedNotes ?
+          <Button onClick={() => setShowArchivedNotes(true)}>Show archived notes</Button> :
+          <Button onClick={() => setShowArchivedNotes(false)}>Hide archived notes</Button>
+        }
+      </div>
+      {showArchivedNotes && (
+        <>
+          {notes.filter((note) => note.archived).length === 0 ? (
+            <Heading>There is no archived note yet</Heading>
+          ) : (
+            <>
+              <Heading>Archived Notes</Heading>
+              <TableContainer>
+                <Table>
+                  <Thead>
+                    <Tr>
+                      <Th>Name</Th>
+                      <Th>Created</Th>
+                      <Th>Category</Th>
+                      <Th>Content</Th>
+                      <Th>Dates</Th>
+                      <Th>
+                        <Button onClick={() => unarchiveAll()}>
+                          Unarchive All
+                        </Button>
+                      </Th>
+                    </Tr>
+                  </Thead>
+                  <tbody>
+                    {notes.map((note) => (
+                      note.archived && (
+                        <Tr key={note.id}>
+                          <Td>
+                            {note.name}
+                          </Td>
+                          <Td>
+                            {note.created}
+                          </Td>
+                          <Td>
+                            {note.category}
+                          </Td>
+                          <Td>
+                            {note.content}
+                          </Td>
+                          <Td>
+                            {extractDatesFromNoteContent(note.content).join(', ')}
+                          </Td>
+                          <Td>
+                            <Button onClick={() => toggleNote(note.id, note.archived)}>
+                              Unarchive
+                            </Button>
+                          </Td>
+                        </Tr>
+                      )
+                    ))}
+                  </tbody>
+                </Table>
+              </TableContainer>
+            </>
+          )}
+        </>
+      )}
       <Modal
         isOpen={isModalOpen}
         isEditing={isEditing}
