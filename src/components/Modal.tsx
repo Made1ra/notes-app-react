@@ -21,7 +21,6 @@ type ModalProps = {
 
 function Modal({ isOpen, isEditing, selectedNote, onClose }: ModalProps) {
     const dispatch = useDispatch();
-    console.log(selectedNote);
 
     const [name, setName] = useState('');
     const [category, setCategory] = useState('Task');
