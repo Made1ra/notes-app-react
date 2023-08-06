@@ -20,8 +20,9 @@ import Tr from './components/Tr';
 import Td from './components/Td';
 import Button from './components/Button';
 import CreateButton from './components/CreateButton';
-import Modal from './components/Modal';
+import ButtonContainer from './components/ButtonContainer';
 import Heading from './components/Heading';
+import Modal from './components/Modal';
 
 function App() {
   const categories = ['Task', 'Random Thought', 'Idea'];
@@ -164,12 +165,12 @@ function App() {
           ))}
         </tbody>
       </Table>
-      <div className="mt-8 mb-4">
+      <ButtonContainer>
         {!showArchivedNotes ?
           <Button onClick={() => setShowArchivedNotes(true)}>Show archived notes</Button> :
           <Button onClick={() => setShowArchivedNotes(false)}>Hide archived notes</Button>
         }
-      </div>
+      </ButtonContainer>
       {showArchivedNotes && (
         <>
           {notes.filter((note) => note.archived).length === 0 ? (
