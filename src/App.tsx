@@ -152,7 +152,7 @@ function App() {
         </tbody>
       </Table>
       <Modal
-        $isOpen={isModalOpen}
+        isOpen={isModalOpen}
         isEditing={isEditing}
         selectedNote={selectedNote}
         onClose={handleCloseModal}

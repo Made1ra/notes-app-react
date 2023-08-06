@@ -3,50 +3,29 @@ import { useDispatch } from 'react-redux';
 import { Note, addNote, editNote } from '../store';
 import { nanoid } from 'nanoid';
 import { formatDate } from '../utilities/formatDate';
-import styled from 'styled-components';
+import Overlay from './Overlay';
+import Content from './Content';
 import TextInput from './TextInput';
 import Select from './Select';
 import Textarea from './Textarea';
 import SubmitButton from './SubmitButton';
 import CancelButton from './CancelButton';
 
-const Overlay = styled.div<{ $isOpen: boolean }>`
-    display: ${(props) => (props.$isOpen ? 'block' : 'none')};
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #00000080;
-    text-align: center;
-`;
-
-const Content = styled.div`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ffffff;
-    padding: 1em;
-    border-radius: 0.1em;
-    box-shadow: 0 0 0.1em #0000004d;
-`;
-
 type ModalProps = {
-    $isOpen: boolean;
+    isOpen: boolean;
     isEditing: boolean;
     selectedNote: Note | null;
     onClose: () => void;
 };
 
-function Modal({ $isOpen, isEditing, selectedNote, onClose }: ModalProps) {
+function Modal({ isOpen, isEditing, selectedNote, onClose }: ModalProps) {
     const dispatch = useDispatch();
 
     const [name, setName] = useState('');
     const [category, setCategory] = useState('Task');
     const [content, setContent] = useState('');
 
-    if (!$isOpen) {
+    if (!isOpen) {
         return null;
     }
 
@@ -91,9 +70,9 @@ function Modal({ $isOpen, isEditing, selectedNote, onClose }: ModalProps) {
     };
 
     return (
-        <Overlay $isOpen={$isOpen}>
+        <Overlay isOpen={isOpen}>
             <Content>
-                <h2>{isEditing ? 'Edit Note' : 'Add New Note'}</h2>
+                <h2 className="m-4 text-black font-bold">{isEditing ? 'Edit Note' : 'Add New Note'}</h2>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <label htmlFor="name">Name:</label>
                     <TextInput
