@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,8 +9,6 @@
     @apply cursor-pointer border-none font-bold hover:opacity-90;
   }
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Lato');
 
 body {
   margin: 0;
