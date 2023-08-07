@@ -228,12 +228,16 @@ function App() {
           )}
         </>
       )}
-      <Modal
-        isOpen={isModalOpen}
-        isEditing={isEditing}
-        selectedNote={selectedNote}
-        onClose={handleCloseModal}
-      />
+      {
+        isModalOpen && (
+          <Modal
+            isOpen={isModalOpen}
+            isEditing={isEditing}
+            selectedNote={selectedNote}
+            onClose={handleCloseModal}
+          />
+        )
+      }
     </Container >
   );
 }

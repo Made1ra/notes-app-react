@@ -1,5 +1,4 @@
 type OverlayProps = {
-    isOpen: boolean;
     children?: React.ReactNode;
 };
 
