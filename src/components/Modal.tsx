@@ -22,9 +22,9 @@ type ModalProps = {
 function Modal({ isOpen, isEditing, selectedNote, onClose }: ModalProps) {
     const dispatch = useDispatch();
 
-    const [name, setName] = useState('');
-    const [category, setCategory] = useState('Task');
-    const [content, setContent] = useState('');
+    const [name, setName] = useState((selectedNote !== null && isEditing) ? selectedNote.name : '');
+    const [category, setCategory] = useState((selectedNote !== null && isEditing) ? selectedNote.category : 'Task');
+    const [content, setContent] = useState((selectedNote !== null && isEditing) ? selectedNote.content : '');
 
     if (!isOpen) {
         return null;
@@ -71,7 +71,7 @@ function Modal({ isOpen, isEditing, selectedNote, onClose }: ModalProps) {
     };
 
     return (
-        <Overlay isOpen={isOpen}>
+        <Overlay>
             <Content>
                 <Heading>{isEditing ? 'Edit Note' : 'Add New Note'}</Heading>
                 <form onSubmit={(e) => handleSubmit(e)}>
